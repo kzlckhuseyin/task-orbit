@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Command extends Model
 {
-    //
+    protected $fillable = ['message', 'user_id'];
 }
