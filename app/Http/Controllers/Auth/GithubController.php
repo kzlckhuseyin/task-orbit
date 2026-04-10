@@ -12,7 +12,7 @@ class GithubController extends Controller
         public function redirect(){
 
             return Socialite::driver('github')->redirect();
-        
+
         }
 
         public function callback(){
@@ -34,7 +34,6 @@ class GithubController extends Controller
             );
 
             Auth::login($user);
-
             return redirect('/');
         }
 }

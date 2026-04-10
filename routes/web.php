@@ -16,3 +16,19 @@ Route::get('/auth/github', [GithubController::class, 'redirect'])->name('github.
 Route::get('/auth/github/callback', [GithubController::class, 'callback'])->name('github.callback');
 
 require __DIR__.'/settings.php';
+
+
+
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+// ... diğer rotalar
+
+Route::get('/admin/login', function () {
+    return view('admin-login');
+})->name('admin.login');
