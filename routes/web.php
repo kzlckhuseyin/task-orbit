@@ -25,9 +25,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+
 // ... diğer rotalar
 
 Route::get('/admin/login', function () {
@@ -39,10 +37,6 @@ Route::get('/admin/login', function () {
 
 
 
-// 1. Giriş Sayfası (login.blade.php)
-Route::get('/', function () {
-    return view('login');
-})->name('login');
 
 Route::get('/admin-login', function () {
     return view('login');
