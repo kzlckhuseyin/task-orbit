@@ -10,33 +10,56 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::all();
-        return response()->json($companies);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Companies retrieved successfully',
+            'data' => $companies
+        ], 200);
     }
 
     public function store(Request $request)
     {
-        $company = Company::create($request->only('title'));
-        return response()->json($company, 201);
+        $validated = $request->validate([
+            'title' => 'required|string|max:255|min:3|unique:companies,title',
+        ]);
+        $company = Company::create($validated);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Company created successfully',
+            'data' => $company
+        ], 201);
     }
 
-    public function show($id)
+    public function show(Company $company)
     {
-        $company = Company::findOrFail($id);
-        return response()->json($company);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Company retrieved successfully',
+            'data' => $company
+        ], 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Company $company)
     {
-        $company = Company::findOrFail($id);
-        $company->update($request->only('title'));
-        return response()->json($company);
+        $validated = $request->validate([
+            'title' => 'required|string|max:255|min:3|unique:companies,title,' . $company->id,
+        ]);
+        $company->update($validated);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Company updated successfully',
+            'data' => $company
+        ], 200);
     }
 
-    public function destroy($id)
+    public function destroy(Company $company)
     {
-        $company = Company::findOrFail($id);
         $company->delete();
-        return response()->json(null, 204);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Company deleted successfully'
+        ], 200);
     }
 
     public function profiles($id)
@@ -50,5 +73,4 @@ class CompanyController extends Controller
         $company = Company::findOrFail($id);
         return response()->json($company->internships);
     }
-    
 }
