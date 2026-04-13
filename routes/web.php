@@ -12,6 +12,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });
 
+//GitHub
 Route::get('/auth/github', [GithubController::class, 'redirect'])->name('github.redirect');
 Route::get('/auth/github/callback', [GithubController::class, 'callback'])->name('github.callback');
 
@@ -26,7 +27,7 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('login');
-})->name('login');
+})->name('user.login');
 // ... diğer rotalar
 
 Route::get('/admin/login', function () {
