@@ -19,8 +19,6 @@ Route::get('/auth/github/callback', [GithubController::class, 'callback'])->name
 require __DIR__.'/settings.php';
 
 
-
-
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -37,8 +35,6 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-
-
 /*
 
 Route::get('/admin-login', function () {
@@ -53,7 +49,6 @@ Route::get('/admin', function () {
 })->name('admin.dashboard');
 
 // 3. Admin Aksiyon Paneli (admin_action_panel.blade.php)
-// Senin kodunda /admin-action-panel linki bu sayfaya gidiyor
 Route::get('/admin-action-panel', function () {
     return view('admin_action_panel');
 })->name('admin.actions');
@@ -62,3 +57,15 @@ Route::get('/admin-action-panel', function () {
 Route::get('/companies', function () {
     return view('companies');
 })->name('companies.view');
+
+
+// dashboard
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+//user_panel
+Route::get('/user-panel', function () {
+    return view('user_panel');
+});
