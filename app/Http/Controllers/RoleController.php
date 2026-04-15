@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
-{   
+{
     // Hangi roller var?
     public function index()
     {
@@ -13,7 +14,7 @@ class RoleController extends Controller
             'status' => 'success',
             'message' => 'Roles retrieved successfully',
             'data' => Role::all()
-        ],200);
+        ], 200);
     }
 
     // Bu rol ne?
@@ -26,9 +27,9 @@ class RoleController extends Controller
         ], 200);
     }
 
-    /* Diğer işlemler (store, update, destroy) 
-    yapmadık çünkü zaten sadece intern ve mentor 
+    /* Diğer işlemler (store, update, destroy)
+    yapmadık çünkü zaten sadece intern ve mentor
     rolleri var ve bunlar sabit kalacak.
-    Eğer yeni roller eklenmesi gerekirse 
+    Eğer yeni roller eklenmesi gerekirse
     bu işlemler eklenebilir.*/
 }

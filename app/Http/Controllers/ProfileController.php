@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
     public function index()
     {
-        $roles = Role::all();
+        $profiles = Profile::all();
 
         return response()->json([
             'status' => 'success',
             'message' => 'Profiles retrieved successfully',
-            'data' => $roles
+            'data' => $profiles
         ], 200);
     }
 
@@ -26,42 +26,42 @@ class ProfileController extends Controller
             'role_id' => 'required|integer',
         ]);
 
-        $role = Role::create($validated);
+        $profile = Profile::create($validated);
 
         return response()->json([
             'status' => 'success',
             'message' => 'Profile created successfully',
-            'data' => $role
+            'data' => $profile
         ], 201);
     }
 
-    public function show(Role $role)
+    public function show(Profile $profile)
     {
         return response()->json([
             'status' => 'success',
             'message' => 'Profile retrieved successfully',
-            'data' => $role
+            'data' => $profile
         ], 200);
     }
 
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Profile $profile)
     {
         $validated = $request->validate([
             'role_id' => 'required|integer',
         ]);
 
-        $role->update($validated);
+        $profile->update($validated);
 
         return response()->json([
             'status' => 'success',
             'message' => 'Profile updated successfully',
-            'data' => $role
+            'data' => $profile
         ], 200);
     }
 
-    public function destroy(Role $role)
+    public function destroy(Profile $profile)
     {
-        $role->delete();
+        $profile->delete();
 
         return response()->json([
             'status' => 'success',
